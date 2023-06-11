@@ -24,8 +24,8 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "1.1.4",
-    "@builder.io/qwik-city": "^1.1.4",
+    "@builder.io/qwik": "1.1.5",
+    "@builder.io/qwik-city": "^1.1.5",
     "@types/eslint": "8.40.0",
     "@types/node": "^20.2.1",
     "@types/pg": "^8.10.1",
@@ -35,7 +35,7 @@
     "drizzle-kit": "^0.18.1",
     "daisyui": "^3.0.1",
     "eslint": "8.39.0",
-    "eslint-plugin-qwik": "1.0.0",
+    "eslint-plugin-qwik": "1.1.5",
     "install": "^0.13.0",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",
@@ -49,6 +49,6 @@
     "@lucia-auth/adapter-mysql": "^1.1.1",
     "@planetscale/database": "^1.7.0",
     "drizzle-orm": "^0.26.5",
-    "lucia-auth": "^1.7.1"
+    "lucia-auth": "^1.8.0"
   }
 }
