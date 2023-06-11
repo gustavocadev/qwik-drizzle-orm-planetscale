@@ -21,8 +21,14 @@ export const useUserLoader = routeLoader$(async (event) => {
 });
 
 export const useLoginAction = routeAction$(
-  async () => {
-    return {};
+  async (values, event) => {
+    const authRequest = auth.handleRequest(event);
+    const key = await auth.useKey('username', values.username, values.password);
+
+    const session = await auth.createSession(key.userId);
+    authRequest.setSession(session);
+
+    throw event.redirect(303, '/');
   },
   zod$({
     username: z.string(),
