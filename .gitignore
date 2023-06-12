@@ -40,3 +40,6 @@ lerna-debug.log*
 
 # Env
 .env
+
+# Vercel
+.vercel
