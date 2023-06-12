@@ -44,12 +44,17 @@ export default component$(() => {
         <label for="username" class="label">
           Username
         </label>
-        <input id="username" name="username" class="input" />
+        <input id="username" name="username" class="input bg-base-200" />
 
         <label for="password" class="label">
           Password
         </label>
-        <input type="password" id="password" name="password" class="input" />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="input bg-base-200"
+        />
 
         <button type="submit" class="btn btn-primary my-2">
           Login
