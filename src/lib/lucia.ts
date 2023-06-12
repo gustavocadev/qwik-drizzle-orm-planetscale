@@ -8,7 +8,7 @@ export const connection = connect({
   url: process.env['CONNECTION_STRING'],
   host: process.env['HOST'],
   username: process.env['USERNAME'],
-  password: process.env['PASSWORDS'],
+  password: process.env['PASSWORD'],
 });
 
 export const db = drizzle(connection);
