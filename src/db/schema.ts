@@ -1,4 +1,3 @@
-import { relations } from 'drizzle-orm';
 import { mysqlTable, bigint, varchar, boolean } from 'drizzle-orm/mysql-core';
 
 export const user = mysqlTable('auth_user', {
@@ -50,16 +49,4 @@ export const key = mysqlTable('auth_key', {
   }),
 });
 
-export const sessionRelation = relations(session, ({ one }) => ({
-  user: one(user, {
-    fields: [session.userId],
-    references: [user.id],
-  }),
-}));
-
-export const keyRelation = relations(key, ({ one }) => ({
-  user: one(user, {
-    fields: [key.userId],
-    references: [user.id],
-  }),
-}));
+// Note: PlanetScale does not support foreign keys, that's why the references() method is commented out.
