@@ -23,20 +23,22 @@ export const useUserLoader = routeLoader$(async (event) => {
 export const useSignupUser = routeAction$(
   async (values, event) => {
     const authRequest = auth.handleRequest(event);
-    const user = await auth.createUser({
-      primaryKey: {
-        providerId: 'username',
-        providerUserId: values.username,
-        password: values.password,
-      },
-      attributes: {
-        username: values.username,
-        names: values.names,
-        last_names: values.lastNames,
-      },
-    });
-    const session = await auth.createSession(user.userId);
-    authRequest.setSession(session);
+    // for now, i'm disabling signup option.
+    
+    // const user = await auth.createUser({
+    //   primaryKey: {
+    //     providerId: 'username',
+    //     providerUserId: values.username,
+    //     password: values.password,
+    //   },
+    //   attributes: {
+    //     username: values.username,
+    //     names: values.names,
+    //     last_names: values.lastNames,
+    //   },
+    // });
+    // const session = await auth.createSession(user.userId);
+    // authRequest.setSession(session);
     throw event.redirect(303, '/');
   },
   zod$({
