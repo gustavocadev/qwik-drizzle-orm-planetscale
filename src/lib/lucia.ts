@@ -5,10 +5,7 @@ import { connect } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 
 export const connection = connect({
-  url: process.env['CONNECTION_STRING'],
-  host: process.env['HOST'],
-  username: process.env['USERNAME'],
-  password: process.env['PASSWORD'],
+  url: process.env['DATABASE_URL'],
 });
 
 export const db = drizzle(connection);
