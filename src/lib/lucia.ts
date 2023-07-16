@@ -1,14 +1,7 @@
 import { planetscale } from "@lucia-auth/adapter-mysql";
 import lucia from "lucia-auth"
 import { qwik } from "lucia-auth/middleware"
-import { connect } from "@planetscale/database";
-import { drizzle } from "drizzle-orm/planetscale-serverless";
-
-export const connection = connect({
-  url: process.env['DATABASE_URL'],
-});
-
-export const db = drizzle(connection);
+import { connection } from "~/db";
 
 export const auth = lucia({
   adapter: planetscale(connection),
