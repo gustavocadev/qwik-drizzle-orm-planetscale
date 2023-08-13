@@ -6,22 +6,22 @@ settings:
 
 dependencies:
   '@lucia-auth/adapter-mysql':
-    specifier: ^1.1.1
-    version: 1.1.1(@planetscale/database@1.7.0)(lucia-auth@1.8.0)
+    specifier: ^2.0.0
+    version: 2.0.0(@planetscale/database@1.10.0)(lucia@2.3.0)
   '@planetscale/database':
-    specifier: ^1.7.0
-    version: 1.7.0
+    specifier: ^1.10.0
+    version: 1.10.0
   drizzle-orm:
-    specifier: ^0.27.2
-    version: 0.27.2(@planetscale/database@1.7.0)(@types/pg@8.10.2)
-  lucia-auth:
-    specifier: ^1.8.0
-    version: 1.8.0
+    specifier: ^0.28.2
+    version: 0.28.2(@planetscale/database@1.10.0)(@types/pg@8.10.2)
+  lucia:
+    specifier: ^2.3.0
+    version: 2.3.0
 
 devDependencies:
   '@builder.io/qwik':
     specifier: 1.2.6
-    version: 1.2.6(undici@5.22.1)
+    version: 1.2.6(undici@5.23.0)
   '@builder.io/qwik-city':
     specifier: ^1.2.6
     version: 1.2.6
@@ -44,14 +44,14 @@ devDependencies:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.26)
   daisyui:
-    specifier: ^3.2.1
-    version: 3.2.1
+    specifier: ^3.5.1
+    version: 3.5.1
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
   drizzle-kit:
-    specifier: ^0.19.6
-    version: 0.19.6
+    specifier: ^0.19.12
+    version: 0.19.12
   eslint:
     specifier: 8.39.0
     version: 8.39.0
@@ -71,8 +71,8 @@ devDependencies:
     specifier: 5.1.6
     version: 5.1.6
   undici:
-    specifier: 5.22.1
-    version: 5.22.1
+    specifier: 5.23.0
+    version: 5.23.0
   vercel:
     specifier: ^29.1.1
     version: 29.1.1(@types/node@20.3.0)
@@ -1377,7 +1377,7 @@ packages:
       - supports-color
     dev: true
 
-  /@builder.io/qwik@1.2.6(undici@5.22.1):
+  /@builder.io/qwik@1.2.6(undici@5.23.0):
     resolution: {integrity: sha512-Cm1sLAimML55I5T1RI80R1lLgI4cnSeQt5obQtcMKa8wMmf2/luEyQaEkeN2fV3sp/gaVXCfAuKaddXK6ONdww==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     hasBin: true
@@ -1385,7 +1385,7 @@ packages:
       undici: ^5.14.0
     dependencies:
       csstype: 3.1.2
-      undici: 5.22.1
+      undici: 5.23.0
     dev: true
 
   /@cspotcode/source-map-support@0.8.1:
@@ -1395,8 +1395,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@drizzle-team/studio@0.0.1:
-    resolution: {integrity: sha512-cHgGezy2ojBFMaU6PZyBkksgFsg2CQ8IRN4mS7WdbA/Zv6xUK6fCNmpEWS/FftbxoA4B8Z0XGnuKsaTJEZsGgA==}
+  /@drizzle-team/studio@0.0.5:
+    resolution: {integrity: sha512-ps5qF0tMxWRVu+V5gvCRrQNqlY92aTnIKdq27gm9LZMSdaKYZt6AVvSK1dlUMzs6Rt0Jm80b+eWct6xShBKhIw==}
     dev: true
 
   /@edge-runtime/format@2.0.1:
@@ -2144,11 +2144,11 @@ packages:
     resolution: {integrity: sha512-Lg3PnLp0QXpxwLIAuuJboLeRaIhrgJjeuh797QADg3xz8wGLugQOS5DpsE8A6i6Adgzf+bacllkKZG3J0tGfDw==}
     dev: true
 
-  /@lucia-auth/adapter-mysql@1.1.1(@planetscale/database@1.7.0)(lucia-auth@1.8.0):
-    resolution: {integrity: sha512-br+/OBDNJ+eRc6RrZnnC20ef+2VEMrXFxNYvsbryPw64ito7vg40STblpENdjJF0o4R10mjWTO43wQ+56jyXLA==}
+  /@lucia-auth/adapter-mysql@2.0.0(@planetscale/database@1.10.0)(lucia@2.3.0):
+    resolution: {integrity: sha512-8a4JZ3VjDyRu/mAop2hEt/jOJO2HXwWIAid6a4wGiR8wgnlyOws9brRc+/wxQHSOlWUlrWemrfDvXLs5mMtkeQ==}
     peerDependencies:
       '@planetscale/database': ^1.0.0
-      lucia-auth: ^1.4.0
+      lucia: ^2.0.0
       mysql2: ^3.0.0
     peerDependenciesMeta:
       '@planetscale/database':
@@ -2156,8 +2156,8 @@ packages:
       mysql2:
         optional: true
     dependencies:
-      '@planetscale/database': 1.7.0
-      lucia-auth: 1.8.0
+      '@planetscale/database': 1.10.0
+      lucia: 2.3.0
     dev: false
 
   /@mapbox/node-pre-gyp@1.0.10:
@@ -2246,8 +2246,8 @@ packages:
       json-parse-even-better-errors: 2.3.1
     dev: true
 
-  /@planetscale/database@1.7.0:
-    resolution: {integrity: sha512-lWR6biXChUyQnxsT4RT1CIeR3ZJvwTQXiQ+158MnY3VjLwjHEGakDzdH9kwUGPk6CHvu6UeqRXp1DgUOVHJFTw==}
+  /@planetscale/database@1.10.0:
+    resolution: {integrity: sha512-XMfNRjIPgGTga6g1YpGr7E21CcnHZcHZdyhRUIiZ/AlpD+ts65UF2B3wKjcu7MKMynmmcOGs6R9kAT6D1OTlZQ==}
     engines: {node: '>=16'}
     dev: false
 
@@ -3680,8 +3680,8 @@ packages:
       type: 1.2.0
     dev: true
 
-  /daisyui@3.2.1:
-    resolution: {integrity: sha512-gIqE6wiqoJt9G8+n3R/SwLeUnpNCE2eDhT73rP0yZYVaM7o6zVcakBH3aEW5RGpx3UkonPiLuvcgxRcb2lE8TA==}
+  /daisyui@3.5.1:
+    resolution: {integrity: sha512-7GG+9QXnr2qQMCqnyFU8TxpaOYJigXiEtmzoivmiiZZHvxqIwYdaMAkgivqTVxEgy3Hot3m1suzZjmt1zUrvmA==}
     engines: {node: '>=16.9.0'}
     dependencies:
       colord: 2.9.3
@@ -3907,11 +3907,11 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.19.6:
-    resolution: {integrity: sha512-Feb/9yKPn6rZI95NvaUwTwpfRJkwGx9MR7ObhUropm+rEwcT9BfHdiJXGzLf4oNcoSFCqmY7zIj8j92lusjyRA==}
+  /drizzle-kit@0.19.12:
+    resolution: {integrity: sha512-rcsmh5gUIkvuD0WrbEc+aLpqY2q2J8ltynRcJiJo2l01hhsYvPnX0sgxWlFXlfAIa5ZXNw2nJZhYlslI6tG3MA==}
     hasBin: true
     dependencies:
-      '@drizzle-team/studio': 0.0.1
+      '@drizzle-team/studio': 0.0.5
       '@esbuild-kit/esm-loader': 2.5.5
       camelcase: 7.0.1
       chalk: 5.2.0
@@ -3927,8 +3927,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.27.2(@planetscale/database@1.7.0)(@types/pg@8.10.2):
-    resolution: {integrity: sha512-ZvBvceff+JlgP7FxHKe0zOU9CkZ4RcOtibumIrqfYzDGuOeF0YUY0F9iMqYpRM7pxnLRfC+oO7rWOUH3T5oFQA==}
+  /drizzle-orm@0.28.2(@planetscale/database@1.10.0)(@types/pg@8.10.2):
+    resolution: {integrity: sha512-QRyuzvpJr7GE6LpvZ/sg2nAKNg2if1uGGkgFTiXn4auuYId//vVJe6HBsDTktfKfcaDGzIYos+/f+PS5EkBmrg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -3989,7 +3989,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      '@planetscale/database': 1.7.0
+      '@planetscale/database': 1.10.0
       '@types/pg': 8.10.2
     dev: false
 
@@ -5939,8 +5939,8 @@ packages:
       es5-ext: 0.10.62
     dev: true
 
-  /lucia-auth@1.8.0:
-    resolution: {integrity: sha512-zI8gT2AOpxTPIxYzToEdgoht+GOflrduZiHPsOEmg4/2pThOyCW3o3lXh+Uwh20tJ9QoXwQe9/Omn6PlUG6efw==}
+  /lucia@2.3.0:
+    resolution: {integrity: sha512-FS+WjvTh8xK/N2I5PBQ9xhF5+OJZo1g2w931ZlaJoXSRxsM1WTkMRAyxFAE3Azoe9vHqlKxRsw11ZiSv+yc3rA==}
     dev: false
 
   /make-dir@3.1.0:
@@ -8361,8 +8361,8 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /undici@5.22.1:
-    resolution: {integrity: sha512-Ji2IJhFXZY0x/0tVBXeQwgPlLWw13GVzpsWPQ3rV50IFMMof2I55PZZxtm4P6iNq+L5znYN9nSTAq0ZyE6lSJw==}
+  /undici@5.23.0:
+    resolution: {integrity: sha512-1D7w+fvRsqlQ9GscLBwcAJinqcZGHUKjbOmXdlE/v8BvEGXjeWAax+341q44EuTcHXXnfyKNbKRq4Lg7OzhMmg==}
     engines: {node: '>=14.0'}
     dependencies:
       busboy: 1.6.0

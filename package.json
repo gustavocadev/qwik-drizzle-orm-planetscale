@@ -33,24 +33,24 @@
     "@typescript-eslint/eslint-plugin": "5.59.1",
     "@typescript-eslint/parser": "5.59.1",
     "autoprefixer": "^10.4.14",
-    "daisyui": "^3.2.1",
-    "drizzle-kit": "^0.19.6",
+    "daisyui": "^3.5.1",
+    "drizzle-kit": "^0.19.12",
     "eslint": "8.39.0",
     "eslint-plugin-qwik": "1.2.6",
     "postcss": "^8.4.26",
     "prettier": "2.8.8",
     "tailwindcss": "^3.3.3",
     "typescript": "5.1.6",
-    "undici": "5.22.1",
+    "undici": "5.23.0",
     "vercel": "^29.1.1",
     "vite": "4.4.4",
     "vite-tsconfig-paths": "4.2.0",
     "dotenv": "^16.3.1"
   },
   "dependencies": {
-    "@lucia-auth/adapter-mysql": "^1.1.1",
-    "@planetscale/database": "^1.7.0",
-    "drizzle-orm": "^0.27.2",
-    "lucia-auth": "^1.8.0"
+    "@lucia-auth/adapter-mysql": "^2.0.0",
+    "@planetscale/database": "^1.10.0",
+    "drizzle-orm": "^0.28.2",
+    "lucia": "^2.3.0"
   }
 }
