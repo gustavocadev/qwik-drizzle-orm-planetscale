@@ -12,8 +12,8 @@ import { auth } from '~/lib/lucia';
 
 export const useUserLoader = routeLoader$(async (event) => {
   const authRequest = auth.handleRequest(event);
-  const { user } = await authRequest.validateUser();
-  if (user) {
+  const session = await authRequest.validate();
+  if (session) {
     throw event.redirect(303, '/');
   }
 
@@ -25,7 +25,10 @@ export const useLoginAction = routeAction$(
     const authRequest = auth.handleRequest(event);
     const key = await auth.useKey('username', values.username, values.password);
 
-    const session = await auth.createSession(key.userId);
+    const session = await auth.createSession({
+      userId: key.userId,
+      attributes: {},
+    });
     authRequest.setSession(session);
 
     throw event.redirect(303, '/');

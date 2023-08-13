@@ -1,4 +1,4 @@
-import { mysqlTable, bigint, varchar, boolean } from 'drizzle-orm/mysql-core';
+import { mysqlTable, bigint, varchar } from 'drizzle-orm/mysql-core';
 
 export const user = mysqlTable('auth_user', {
   id: varchar('id', {
@@ -16,7 +16,7 @@ export const user = mysqlTable('auth_user', {
   }),
 });
 
-export const session = mysqlTable('auth_session', {
+export const session = mysqlTable('user_session', {
   id: varchar('id', {
     length: 128,
   }).primaryKey(),
@@ -40,12 +40,8 @@ export const key = mysqlTable('auth_key', {
     length: 15,
   }).notNull(),
   // .references(() => user.id),
-  primaryKey: boolean('primary_key').notNull(),
   hashedPassword: varchar('hashed_password', {
     length: 255,
-  }),
-  expires: bigint('expires', {
-    mode: 'number',
   }),
 });
 
