@@ -7,7 +7,7 @@ import { connection } from "~/db";
 export const auth = lucia({
   adapter: planetscale(connection, {
     user: 'auth_user',
-    key: 'auth_key',
+    key: 'user_key',
     session: 'user_session',
   }),
   env: process.env.NODE_ENV === "production" ? "PROD" : "DEV",

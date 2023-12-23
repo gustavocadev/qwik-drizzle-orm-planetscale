@@ -1,6 +1,6 @@
 import { mysqlTable, bigint, varchar } from 'drizzle-orm/mysql-core';
 
-export const users = mysqlTable('auth_user', {
+export const user = mysqlTable('auth_user', {
   id: varchar('id', {
     length: 15, // change this when using custom user ids
   }).primaryKey(),
@@ -14,9 +14,25 @@ export const users = mysqlTable('auth_user', {
   lastNames: varchar('last_names', {
     length: 255,
   }),
+  email: varchar('email', {
+    length: 255,
+  }),
 });
 
-export const sessions = mysqlTable('user_session', {
+export const key = mysqlTable('user_key', {
+  id: varchar('id', {
+    length: 255,
+  }).primaryKey(),
+  userId: varchar('user_id', {
+    length: 15,
+  }).notNull(),
+  // .references(() => user.id),
+  hashedPassword: varchar('hashed_password', {
+    length: 255,
+  }),
+});
+
+export const session = mysqlTable('user_session', {
   id: varchar('id', {
     length: 128,
   }).primaryKey(),
@@ -30,19 +46,6 @@ export const sessions = mysqlTable('user_session', {
   idleExpires: bigint('idle_expires', {
     mode: 'number',
   }).notNull(),
-});
-
-export const keys = mysqlTable('auth_key', {
-  id: varchar('id', {
-    length: 255,
-  }).primaryKey(),
-  userId: varchar('user_id', {
-    length: 15,
-  }).notNull(),
-  // .references(() => user.id),
-  hashedPassword: varchar('hashed_password', {
-    length: 255,
-  }),
 });
 
 // Note: PlanetScale does not support foreign keys, that's why the references() method is commented out.
