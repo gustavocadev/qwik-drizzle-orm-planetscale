@@ -8,11 +8,16 @@ import {
   Form,
   Link,
 } from '@builder.io/qwik-city';
-import { auth } from '~/lib/lucia';
+import { eq } from 'drizzle-orm';
+// qwik-lucia under the hood uses oslo library which is a the library that lucia-auth uses
+import { verifyPassword } from 'qwik-lucia';
+import { db } from '~/lib/drizzle/db';
+import { userTable } from '~/lib/drizzle/schema';
+import { handleRequest, lucia } from '~/lib/lucia';
 
 export const useUserLoader = routeLoader$(async (event) => {
-  const authRequest = auth.handleRequest(event);
-  const session = await authRequest.validate();
+  const authRequest = handleRequest(event);
+  const { session } = await authRequest.validateUser();
   if (session) {
     throw event.redirect(303, '/');
   }
@@ -22,13 +27,34 @@ export const useUserLoader = routeLoader$(async (event) => {
 
 export const useLoginAction = routeAction$(
   async (values, event) => {
-    const authRequest = auth.handleRequest(event);
-    const key = await auth.useKey('username', values.username, values.password);
+    const authRequest = handleRequest(event);
 
-    const session = await auth.createSession({
-      userId: key.userId,
-      attributes: {},
-    });
+    // 1. Find user by username
+    const [user] = await db
+      .select()
+      .from(userTable)
+      .where(eq(userTable.username, values.username));
+
+    // 2. Check if user exists
+    if (!user) {
+      return event.fail(401, {
+        msg: 'Invalid username or password',
+      });
+    }
+    // 3. Check if password is correct)
+    const isPasswordValid = await verifyPassword(
+      user.passwordHash,
+      values.password
+    );
+
+    if (!isPasswordValid) {
+      return event.fail(401, {
+        msg: 'Invalid username or password',
+      });
+    }
+
+    // 4. Create session
+    const session = await lucia.createSession(user.id, {});
     authRequest.setSession(session);
 
     throw event.redirect(303, '/');

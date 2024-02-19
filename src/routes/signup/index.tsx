@@ -8,11 +8,15 @@ import {
   routeLoader$,
   Link,
 } from '@builder.io/qwik-city';
-import { auth } from '~/lib/lucia';
+import { generateId } from 'lucia';
+import { hashPassword } from 'qwik-lucia';
+import { db } from '~/lib/drizzle/db';
+import { userTable } from '~/lib/drizzle/schema';
+import { handleRequest, lucia } from '~/lib/lucia';
 
 export const useUserLoader = routeLoader$(async (event) => {
-  const authRequest = auth.handleRequest(event);
-  const session = await authRequest.validate();
+  const authRequest = handleRequest(event);
+  const session = await authRequest.validateUser();
   if (session) {
     throw event.redirect(303, '/');
   }
@@ -22,23 +26,22 @@ export const useUserLoader = routeLoader$(async (event) => {
 
 export const useSignupUser = routeAction$(
   async (values, event) => {
-    const authRequest = auth.handleRequest(event);
-    const user = await auth.createUser({
-      key: {
-        providerId: 'username',
-        providerUserId: values.username,
-        password: values.password,
-      },
-      attributes: {
-        username: values.username,
-        names: values.names,
-        last_names: values.lastNames,
-      },
+    const authRequest = handleRequest(event);
+
+    // 1. Hash the password
+    const passwordHash = await hashPassword(values.password);
+    // 2. generate user id
+    const userId = generateId(15);
+    // 3. create user
+    await db.insert(userTable).values({
+      id: userId,
+      username: values.username,
+      firstName: values.firstName,
+      passwordHash: passwordHash,
+      lastName: values.lastName,
     });
-    const session = await auth.createSession({
-      userId: user.userId,
-      attributes: {},
-    });
+    // 4. create session
+    const session = await lucia.createSession(userId, {});
     authRequest.setSession(session);
 
     // redirect to home page
@@ -46,9 +49,9 @@ export const useSignupUser = routeAction$(
   },
   zod$({
     username: z.string().min(2),
-    password: z.string().min(5),
-    names: z.string().min(2),
-    lastNames: z.string().min(2),
+    password: z.string().min(6),
+    firstName: z.string().min(2),
+    lastName: z.string().min(2),
   })
 );
 
@@ -60,19 +63,24 @@ export default component$(() => {
         action={signupUserAction}
         class="form-control max-w-lg mx-auto mt-32"
       >
-        <label for="names" class="label">
+        <label for="firstName" class="label">
           Nombres
         </label>
-        <input type="text" name="names" class="input bg-base-200" id="names" />
+        <input
+          type="text"
+          name="firstName"
+          class="input bg-base-200"
+          id="firstName"
+        />
 
-        <label for="lastNames" class="label">
+        <label for="lastName" class="label">
           Apellidos
         </label>
         <input
           type="text"
-          name="lastNames"
+          name="lastName"
           class="input bg-base-200"
-          id="lastNames"
+          id="lastName"
         />
 
         <label for="username" class="label">
